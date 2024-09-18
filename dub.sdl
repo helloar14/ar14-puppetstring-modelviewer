@@ -51,7 +51,7 @@ configuration "linux-full" {
 configuration "osx-full" {
 	platform "osx"
 	targetType "executable"
-	targetPath "out/Inochi Session.app/Contents/MacOS"
+	targetPath "out/Puppetstring Model Viewer.app/Contents/MacOS"
 	versions "InBranding"
 
 	subConfiguration "i2d-imgui" "dynamic_dynamicCRT"
@@ -67,7 +67,7 @@ configuration "win32-full" {
 	dependency "bindbc-spout2" version="~>0.1.1"
 
 	lflags "/SUBSYSTEM:windows" "/ENTRY:mainCRTStartup" platform="window-dmd"
-	sourceFiles "build-aux\\windows\\inochi-session.res"
+	sourceFiles "build-aux\\windows\\puppetstring-modelviewer.res"
 }
 
 // Linux nightly build
@@ -104,7 +104,7 @@ configuration "win32-nightly" {
 	dependency "bindbc-spout2" version="~>0.1.1"
 
 	lflags "/SUBSYSTEM:windows" "/ENTRY:mainCRTStartup" platform="window-dmd"
-	sourceFiles "build-aux\\windows\\inochi-session.res"
+	sourceFiles "build-aux\\windows\\puppetstring-modelviewer.res"
 }
 
 
@@ -112,10 +112,10 @@ configuration "win32-nightly" {
 
 configuration "update-version" {
 	targetType "none"
-	preGenerateCommands "dub run gitver -- --prefix INS --file source/session/ver.d --mod session.ver --appname \"Inochi Session\" --itchfile version.txt"
+	preGenerateCommands "dub run gitver -- --prefix INS --file source/session/ver.d --mod session.ver --appname \"Puppetstring Model Viewer\" --itchfile version.txt"
 }
 
 configuration "meta" {
 	targetType "none"
-	preGenerateCommands "rc.exe /v build-aux\\windows\\inochi-session.rc" platform="windows"
+	preGenerateCommands "rc.exe /v build-aux\\windows\\puppetstring-modelviewer.rc" platform="windows"
 }
