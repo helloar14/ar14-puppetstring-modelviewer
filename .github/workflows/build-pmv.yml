@@ -52,10 +52,13 @@ jobs:
         directory: 'out/'
         path: '*'
 
-    - name: 'Release ZIP'
-      uses: softprops/action-gh-release@v1
+    - name: 'Make Artifact of ZIP'
+      uses: actions/upload-artifact@v3
       with:
-          files: 'out/puppetstring-modelviewer-linux-x86_64.zip'
+        name: release-linux
+        path: |
+          out/puppetstring-modelviewer-linux-x86_64.zip
+        retention-days: 1
 
   windows-build:
     runs-on: windows-latest
@@ -100,10 +103,13 @@ jobs:
         directory: 'out/'
         path: '*'
 
-    - name: 'Release ZIP'
-      uses: softprops/action-gh-release@v1
+    - name: 'Make Artifact of ZIP'
+      uses: actions/upload-artifact@v3
       with:
-          files: out/puppetstring-modelviewer-win32-x86_64.zip
+        name: release-win32
+        path: |
+          out/puppetstring-modelviewer-win32-x86_64.zip
+        retention-days: 1
 
   macOS-build:
     runs-on: macos-14
@@ -178,7 +184,10 @@ jobs:
         directory: 'out/'
         path: '*'
 
-    - name: 'Release ZIP'
-      uses: softprops/action-gh-release@v1
+    - name: 'Make Artifact of ZIP'
+      uses: actions/upload-artifact@v3
       with:
-          files: out/puppetstring-modelviewer-macOS.zip
+        name: release-macos
+        path: |
+          out/puppetstring-modelviewer-macOS.zip
+        retention-days: 1 
