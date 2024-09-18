@@ -4,11 +4,7 @@
 # documentation.
 name: Build Puppetstring Model Viewer
 
-on:
-  push:
-    tags:
-      - '*'
-      - '!*-rc*'
+on: workflow_dispatch
 
 permissions:
   contents: write
