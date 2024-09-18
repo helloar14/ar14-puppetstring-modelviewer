@@ -23,28 +23,28 @@ cd $LASTPWD
 echo "Setting up file structure..."
 
 # Copy info plist and icon
-cp build-aux/osx/Info.plist out/Inochi\ Session.app/Contents/
+cp build-aux/osx/Info.plist out/Puppetstring\ Model\ Viewer.app/Contents/
 
 # Move any translation files in if any.
-mv -n out/*.mo out/Inochi\ Session.app/Contents/Resources/i18n/
+mv -n out/*.mo out/Puppetstring\ Model\ Viewer.app/Contents/Resources/i18n/
 
 # Copy license info to SharedSupport
-cp res/licenses/*-LICENSE out/Inochi\ Session.app/Contents/SharedSupport/
-cp LICENSE out/Inochi\ Session.app/Contents/SharedSupport/LICENSE
+cp res/licenses/*-LICENSE out/Puppetstring\ Model\ Viewer.app/Contents/SharedSupport/
+cp LICENSE out/Puppetstring\ Model\ Viewer.app/Contents/SharedSupport/LICENSE
 
 
 # Create icons dir
 # TODO: check if dir exists, skip this step if it does
 if [ ! -d "out/InochiCreator.icns" ]; then
-    iconutil -c icns -o out/InochiSession.icns build-aux/osx/Inochi-Session.iconset
+    iconutil -c icns -o out/PuppetstringModelViewer.icns build-aux/osx/PuppetstringModelViewer.iconset
 else
     echo "Icons already exist, skipping..."
 fi
 
 echo "Applying Icon..."
-cp out/InochiSession.icns out/Inochi\ Session.app/Contents/Resources/InochiSession.icns 
+cp out/InochiSession.icns out/Puppetstring\ Model\ Viewer.app/Contents/Resources/PuppetstringModelViewer.icns 
 
 echo "Cleaning up..."
-find out/Inochi\ Session.app/Contents/MacOS -type f ! -name "inochi-session" -delete
+find out/Puppetstring\ Model\ Viewer.app/Contents/MacOS -type f ! -name "puppetstring-modelviewer" -delete
 
 echo "Done!"

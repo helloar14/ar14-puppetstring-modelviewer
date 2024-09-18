@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>inochi-session</id>
+  <launchable type="desktop-id">puppetstring-modelviewer.desktop</launchable>
+  <name>Puppetstring Model Viewer</name>
+  <summary>Model viewer for Puppetstring based on Inochi Session. </summary>
+  <description>
+    <p>
+      Model viewer for Puppetstring based on Inochi Session. 
+    </p>
+  </description>
+  <url type="homepage">https://ar14.works/puppetstring</url>
+  <url type="help">https://ar14.works/docs/puppetstring</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Title screen</caption>
+      <image>https://user-images.githubusercontent.com/7032834/181119161-f83e8e57-2f9e-409f-90bd-1b1b9c047bcc.png</image>
+    </screenshot>
+  </screenshots>
+  <categories>
+    <category>Graphics</category>
+  </categories>
+</component>

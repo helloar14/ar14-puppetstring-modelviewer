@@ -249,6 +249,61 @@ void insUpdateScene() {
     // Update virtual spaces
     insScene.space.update();
 
+    // Scene Colors
+    float[4] sceneBGColor = [0, 0, 0, 0];
+    float[3] sceneLighting = [1, 1, 1];
+    
+    if (insScene.space.currentZone) {
+
+        sceneBGColor[0] = insScene.space.currentZone.getBlendshapeFor("psBackgroundRed");
+        sceneBGColor[1] = insScene.space.currentZone.getBlendshapeFor("psBackgroundGreen");
+        sceneBGColor[2] = insScene.space.currentZone.getBlendshapeFor("psBackgroundBlue");
+        sceneBGColor[3] = insScene.space.currentZone.getBlendshapeFor("psBackgroundAlpha");
+
+        inSetClearColor(sceneBGColor[0], sceneBGColor[1], sceneBGColor[2], sceneBGColor[3]);
+
+        float enablePrecisionTransform = insScene.space.currentZone.getBlendshapeFor("psEnablePrecisionTransform");
+
+        if (enablePrecisionTransform == 1) {
+
+            foreach(i, ref sceneItem; insScene.sceneItems) {
+    
+                auto puppet = sceneItem.puppet;
+    
+                puppet.transform.scale.x = insScene.space.currentZone.getBlendshapeFor("psModelScaleX");
+                puppet.transform.scale.y = insScene.space.currentZone.getBlendshapeFor("psModelScaleY");
+    
+                puppet.transform.translation.x = insScene.space.currentZone.getBlendshapeFor("psModelTranslationX");
+                puppet.transform.translation.y = insScene.space.currentZone.getBlendshapeFor("psModelTranslationY");
+                    
+            }
+
+        }
+
+        float enableAmbientLight = insScene.space.currentZone.getBlendshapeFor("psEnableAmbientLight");
+
+        if (enableAmbientLight == 1) {
+
+            insScene.shouldPostProcess = true;
+    
+            sceneLighting[0] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightRed");
+            sceneLighting[1] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
+            sceneLighting[2] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
+    
+            inSceneAmbientLight.vector = sceneLighting;
+
+        } else if (insScene.shouldPostProcess) {
+
+            insScene.shouldPostProcess = false;
+
+            inSceneAmbientLight.vector = [1, 1, 1];
+
+        }
+
+    }
+
+    /* remove trash can
+
     // Render the waifu trashcan outside of the main FB
     glEnable(GL_BLEND);
     glDisable(GL_DEPTH_TEST);
@@ -285,6 +340,8 @@ void insUpdateScene() {
         glFlush();
     }
     glDisable(GL_BLEND);
+
+    */
 
     inBeginScene();
 
@@ -547,6 +604,8 @@ void insInteractWithScene() {
                 5
             );
         }
+
+        /* disable model deletion
         
 
         if (isDragDown && isMouseOverDelete) {
@@ -570,6 +629,8 @@ void insInteractWithScene() {
             );
         } else {
 
+        */
+
             draggingPuppet.transform.translation = dampen(
                 draggingPuppet.transform.translation,
                 vec3(targetPos, 0),
@@ -582,6 +643,6 @@ void insInteractWithScene() {
                 vec2(targetScale),
                 inGetDeltaTime()
             );
-        }
+        //}
     } else isDragDown = false;
 }

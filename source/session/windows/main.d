@@ -69,14 +69,20 @@ protected:
             if (inInputMouseDoubleClicked(MouseButton.Left)) this.showUI = !showUI;
             insInteractWithScene();
 
+            /* disable drag and drop
+
             if (getDraggedFiles().length > 0) {
                 loadModels(getDraggedFiles());
             }
+
+            */
         }
 
         if (showUI) {
             uiImBeginMainMenuBar();
                 vec2 avail = uiImAvailableSpace();
+
+                /* remove logo and file
                 version (InBranding) {
                     uiImImage(logo.getTextureId(), vec2(avail.y*2, avail.y*2));
                 }
@@ -107,16 +113,24 @@ protected:
                     uiImEndMenu();
                 }
 
+                */
+
                 if (uiImBeginMenu(__("View"))) {
+
+                    /* remove panels separator
 
                     uiImLabelColored(_("Panels"), vec4(0.8, 0.3, 0.3, 1));
                     uiImSeperator();
+
+                    */
 
                     foreach(panel; inPanels) {
                         if (uiImMenuItem(panel.displayNameC, "", panel.visible)) {
                             panel.visible = !panel.visible;
                         }
                     }
+
+                    /* remove virtual space
                     
                     uiImNewLine();
 
@@ -125,6 +139,8 @@ protected:
                     if (uiImMenuItem(__("Virtual Space"))) {
                         inPushToolWindow(new SpaceEditor());
                     }
+
+                    */
 
                     uiImEndMenu();
                 }
@@ -141,6 +157,8 @@ protected:
                     }
                     uiImEndMenu();
                 }
+
+                /* remove plugins and help
 
                 if (uiImBeginMenu(__("Plugins"))) {
 
@@ -178,10 +196,14 @@ protected:
                     uiImEndMenu();
                 }
 
+                */
+
                 uiImDummy(vec2(4, 0));
                 uiImSeperator();
                 uiImDummy(vec2(4, 0));
-                uiImLabel(_("Double-click to show/hide UI"));
+                uiImLabel(_("Double-click to Toggle Developer/Rigger Tools"));
+
+                /* remove the rest
 
                 // DONATE BUTTON
                 avail = uiImAvailableSpace();
@@ -190,6 +212,9 @@ protected:
                 if (uiImMenuItem(__("Donate"))) {
                     uiOpenLink("https://www.patreon.com/LunaFoxgirlVT");
                 }
+
+                */
+                
             uiImEndMainMenuBar();
         }
 
@@ -216,7 +241,7 @@ public:
             inSettingsGet!InochiWindowSettings("window", InochiWindowSettings(1024, 1024));
 
         import session.ver;
-        super("Inochi Session %s".format(INS_VERSION), windowSettings.width, windowSettings.height);
+        super("Puppetstring Model Viewer", windowSettings.width, windowSettings.height);
         
         // Initialize Inochi2D
         inInit(&inGetTime);
