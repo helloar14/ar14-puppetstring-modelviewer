@@ -20,7 +20,6 @@ jobs:
         compiler: ldc-latest
   
     - name: 'Preparing build... (Ubuntu)'
-      if: ${{ matrix.config.platform == 'linux' }}
       run: |
         sudo apt install libsdl2-dev libfreetype6-dev
       
@@ -39,7 +38,7 @@ jobs:
         # Build the project, with its main file included, without unittests
         dub build --compiler=ldc2 --build=release --config=linux-full
 
-    - name: Archive Zip
+    - name: 'Archive ZIP'
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
@@ -63,7 +62,6 @@ jobs:
         compiler: ldc-latest
 
     - name: 'Preparing build... (Windows)'
-      if: ${{ matrix.config.platform == 'win32' }}
       run: |
         Remove-Item 'C:/Strawberry' -Recurse
       
@@ -84,7 +82,7 @@ jobs:
         # Build the project, with its main file included, without unittests
         dub build --compiler=ldc2 --build=release --config=win32-full
           
-    - name: 'Archive Zip'
+    - name: 'Archive ZIP'
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
@@ -92,7 +90,7 @@ jobs:
         directory: 'out/'
         path: '*'
 
-    - name: 'Release'
+    - name: 'Release ZIP'
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
@@ -108,7 +106,6 @@ jobs:
         compiler: ldc-latest
 
     - name: 'Preparing build... (macOS)'
-      if: ${{ matrix.config.platform == 'osx' }}
       run: |
         export HOMEBREW_NO_INSTALL_CLEANUP=1
         export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
@@ -134,8 +131,6 @@ jobs:
         dub add-local dcv-i2d/ "0.3.0"
 
     - name: 'Build (OSX Universal)'
-      if: ${{ matrix.config.platform == 'osx' }}
-      id: osx-build
       run: |
         dub build --config=meta
 
