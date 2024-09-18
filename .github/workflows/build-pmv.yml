@@ -31,7 +31,6 @@ jobs:
         dub add-local dcv-i2d/ "0.3.0"
 
     - name: 'Update version info'
-      if: 'inputs.generate_version'
       run: |
         # Build metadata (like version information and icons)
         dub build --config=update-version
@@ -80,7 +79,6 @@ jobs:
         dub add-local dcv-i2d/ "0.3.0"
 
     - name: 'Update version info'
-      if: 'inputs.generate_version'
       run: |
         # Build metadata (like version information and icons)
         dub build --config=update-version
