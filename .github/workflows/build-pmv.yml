@@ -30,6 +30,12 @@ jobs:
         dub add-local i2d-imgui/ "0.8.0"
         dub add-local dcv-i2d/ "0.3.0"
 
+    - name: 'Update version info'
+      if: 'inputs.generate_version'
+      run: |
+        # Build metadata (like version information and icons)
+        dub build --config=update-version
+
     - name: 'Build Inochi Session'
       run: |
         # Build metadata (like version information and icons)
@@ -64,6 +70,7 @@ jobs:
     - name: 'Preparing build... (Windows)'
       run: |
         Remove-Item 'C:/Strawberry' -Recurse
+        .\vcvars.ps1
       
     - name: 'Clone dependencies & set versions'
       run: |
@@ -72,10 +79,14 @@ jobs:
         dub add-local i2d-imgui/ "0.8.0"
         dub add-local dcv-i2d/ "0.3.0"
 
+    - name: 'Update version info'
+      if: 'inputs.generate_version'
+      run: |
+        # Build metadata (like version information and icons)
+        dub build --config=update-version
+
     - name: 'Build Inochi Session'
       run: |
-        .\vcvars.ps1
-          
         # Build metadata (like version information and icons)
         dub build --config=meta
           
@@ -130,18 +141,23 @@ jobs:
         dub add-local i2d-imgui/ "0.8.0"
         dub add-local dcv-i2d/ "0.3.0"
 
+    - name: 'Update version info'
+      run: |
+        # Build metadata (like version information and icons)
+        dub build --config=update-version
+
     - name: 'Build (OSX Universal)'
       run: |
         dub build --config=meta
 
         # First build ARM64 version...
         echo "Building arm64 binary..."
-        dub build --build=${{ inputs.build_type }} --compiler=ldc2 --config=${{ matrix.config.platform }}-${{ inputs.variant }} --arch=arm64-apple-macos
+        dub build --build=release --compiler=ldc2 --config=osx-full --arch=arm64-apple-macos
         mv "out/Puppetstring Model Viewer.app/Contents/MacOS/puppetstring-modelviewer" "out/Puppetstring Model Viewer.app/Contents/MacOS/puppetstring-modelviewer-arm64"
 
         # Then the X86_64 version...
         echo "Building x86_64 binary..."
-        dub build --build=${{ inputs.build_type }} --compiler=ldc2 --config=${{ matrix.config.platform }}-${{ inputs.variant }} --arch=x86_64-apple-macos
+        dub build --build=release --compiler=ldc2 --config=osx-full --arch=x86_64-apple-macos
         mv "out/Puppetstring Model Viewer.app/Contents/MacOS/puppetstring-modelviewer" "out/Puppetstring Model Viewer.app/Contents/MacOS/puppetstring-modelviewer-x86_64"
 
         # Glue them together with lipo
