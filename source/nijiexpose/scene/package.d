@@ -95,8 +95,6 @@ class Scene {
             }
         }
 
-        */
-
         insScene.shouldPostProcess = inSettingsGet!(bool)("shouldPostProcess", true);
         
         float[3] ambientLight = inSettingsGet!(float[3])("ambientLight", [1, 1, 1]);
@@ -104,6 +102,8 @@ class Scene {
 
         inSceneAmbientLight.vector = ambientLight;
         inSetClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
+
+        */
     }
 
     void cleanup() {
@@ -202,27 +202,41 @@ class Scene {
 
             */
 
-            if (insScene.space.currentZone.getBlendshapeFor("psEnableAmbientLight") == 1) {
+            float[3] ambientLight = inSettingsGet!(float[3])("ambientLight", [1, 1, 1]);
+            float[4] bgColor = inSettingsGet!(float[4])("bgColor", [0.5, 0.5, 0.5, 0]);
 
-                insScene.shouldPostProcess = true;
+            if (this.space.currentZone.getBlendshapeFor("psEnableAmbientLight") == 1) {
 
-                ambientLight[0] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightRed");
-                ambientLight[1] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
-                ambientLight[2] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
+                this.shouldPostProcess = true;
+
+                ambientLight[0] = this.space.currentZone.getBlendshapeFor("psAmbientLightRed");
+                ambientLight[1] = this.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
+                ambientLight[2] = this.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
 
             } else {
 
-                insScene.shouldPostProcess = false;
+                this.shouldPostProcess = false;
 
             }
 
-            bgColor[0] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightRed");
-            bgColor[1] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
-            bgColor[2] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
-            bgColor[3] = insScene.space.currentZone.getBlendshapeFor("psBackgroundAlpha");
+            bgColor[0] = this.space.currentZone.getBlendshapeFor("psAmbientLightRed");
+            bgColor[1] = this.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
+            bgColor[2] = this.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
+            bgColor[3] = this.space.currentZone.getBlendshapeFor("psBackgroundAlpha");
 
             inSceneAmbientLight.vector = ambientLight;
             inSetClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
+
+            if (this.space.currentZone.getBlendshapeFor("psEnablePrecisionTransform") == 1) {
+
+                foreach(ref sceneItem; this.sceneItems) {
+
+                    sceneItem.puppet.transform.translation = vec3(this.space.currentZone.getBlendshapeFor("psModelTranslationX"), this.space.currentZone.getBlendshapeFor("psModelTranslationY"), 0);
+                    sceneItem.puppet.transform.scale = vec2(this.space.currentZone.getBlendshapeFor("psModelScaleX"), this.space.currentZone.getBlendshapeFor("psModelScaleY"));
+
+                }
+
+            }
             
             // Update plugins
             foreach(ref plugin; insPlugins) {
@@ -493,6 +507,8 @@ class Scene {
                     5
                 );
             }
+
+            /*
             
 
             if (isDragDown && isMouseOverDelete) {
@@ -515,6 +531,8 @@ class Scene {
                     inGetDeltaTime()
                 );
             } else {
+
+                */
                 if (movingTarget !is null) {
                     movingTarget.puppet.transform.translation = dampen(
                         movingTarget.puppet.transform.translation,
@@ -529,7 +547,7 @@ class Scene {
                         inGetDeltaTime()
                     );
                 }
-            }
+            //}
         } else isDragDown = false;
     }
 }
