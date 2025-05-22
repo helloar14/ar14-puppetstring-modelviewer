@@ -34,8 +34,8 @@ class Scene {
     VirtualSpace space;
     SceneItem[] sceneItems;
 
-    string bgPath;
-    Texture backgroundImage;
+    //string bgPath;
+    //Texture backgroundImage;
 
     bool shouldPostProcess = true;
     float zoneInactiveTimer = 0;
@@ -80,6 +80,8 @@ class Scene {
 
         AppBatch = new SpriteBatch();
 
+        /*
+
         insScene.bgPath = inSettingsGet!string("bgPath");
         if (insScene.bgPath) {
             try {
@@ -93,12 +95,29 @@ class Scene {
             }
         }
 
+        */
+
         insScene.shouldPostProcess = inSettingsGet!(bool)("shouldPostProcess", true);
         
         float[3] ambientLight = inSettingsGet!(float[3])("ambientLight", [1, 1, 1]);
-        inSceneAmbientLight.vector = ambientLight;
-
         float[4] bgColor = inSettingsGet!(float[4])("bgColor", [0.5, 0.5, 0.5, 0]);
+
+        if (insScene.space.currentZone.getBlendshapeFor("psEnableAmbientLight") == 1) {
+
+            insScene.shouldPostProcess = true;
+
+            ambientLight[0] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightRed");
+            ambientLight[1] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
+            ambientLight[2] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
+
+        }
+
+        bgColor[0] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightRed");
+        bgColor[1] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
+        bgColor[2] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
+        bgColor[3] = insScene.space.currentZone.getBlendshapeFor("psBackgroundAlpha");
+
+        inSceneAmbientLight.vector = ambientLight;
         inSetClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
     }
 
@@ -169,6 +188,8 @@ class Scene {
 
         inBeginScene();
 
+            /*
+
             if (this.backgroundImage) {
                 float texWidth = this.backgroundImage.width;
                 float texHeight = this.backgroundImage.height;
@@ -193,6 +214,8 @@ class Scene {
                 );
                 AppBatch.flush();
             }
+
+            */
             
             // Update plugins
             foreach(ref plugin; insPlugins) {
