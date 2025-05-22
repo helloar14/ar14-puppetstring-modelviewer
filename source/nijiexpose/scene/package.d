@@ -71,9 +71,13 @@ class Scene {
 
     void init() {
         insScene.space = insLoadVSpace();
+
+        /*
         auto tex = ShallowTexture(cast(ubyte[])import("tex/ui-delete.png"));
         inTexPremultiply(tex.data);
         trashcanTexture = new Texture(tex);
+        */
+
         AppBatch = new SpriteBatch();
 
         insScene.bgPath = inSettingsGet!string("bgPath");
@@ -122,6 +126,8 @@ class Scene {
         // Update virtual spaces
         this.space.update();
 
+        /*
+
         // Render the waifu trashcan outside of the main FB
         glEnable(GL_BLEND);
         glDisable(GL_DEPTH_TEST);
@@ -158,6 +164,8 @@ class Scene {
             glFlush();
         }
         glDisable(GL_BLEND);
+
+        */
 
         inBeginScene();
 
@@ -510,7 +518,7 @@ private {
     enum TRASHCAN_DISPLACEMENT = 16;
     float trashcanVisibility = 0;
     float trashcanSize = 64;
-    Texture trashcanTexture;
+    //Texture trashcanTexture;
     rect deleteArea;
     bool isMouseOverDelete;
 

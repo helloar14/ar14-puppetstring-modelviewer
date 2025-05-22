@@ -34,12 +34,12 @@ void insInitFrameSending() {
         loadSuccessful = loadMode == Spout2Support.spout2;
         
         if (loadSuccessful) {
-            string senderName = "nijiexpose";
+            string senderName = "Puppetstring Model Viewer";
             spHandle = spGetSpout();
 
             int i = 1;
             while (spFindSenderName(spHandle, cast(char*)senderName.toStringz)) {
-                senderName = "nijiexpose (%s)".format(i);
+                senderName = "Puppetstring Model Viewer (%s)".format(i);
             }
 
             spSetSenderName(spHandle, senderName.toStringz);

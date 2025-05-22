@@ -22,13 +22,13 @@ import nijiexpose.tracking.tracker;
 import std.process;
 
 void main(string[] args) {
-    insLogInfo("nijiexpose %s, args=%s", INS_VERSION, args[1..$]);
+    insLogInfo("Puppetstring Model Viewer %s, args=%s", INS_VERSION, args[1..$]);
 
     // Set the application info
     InApplication appInfo = InApplication(
-        "net.nijilive.nijiexpose",   // FQDN
-        "nijiexpose",               // Config dir
-        "nijiexpose"                // Human-readable name
+        "net.ar14.puppetstring-modelviewer",   // FQDN
+        "puppetstring-modelviewer",               // Config dir
+        "Puppetstring Model Viewer"                // Human-readable name
     );
     inSetApplication(appInfo);
 
@@ -41,7 +41,7 @@ void main(string[] args) {
     // Initialize expressions before models are loaded.
     insInitExpressions();
 
-    neInitTracker();
+    //neInitTracker();
 
     // Open window and init nijilive
     auto window = neCreateWindow(args[1..$]);
@@ -60,5 +60,5 @@ void main(string[] args) {
     insCleanupFrameSending();
     insScene.cleanup();
     inSettingsSave();
-    neShutdownTracker();
+    //neShutdownTracker();
 }

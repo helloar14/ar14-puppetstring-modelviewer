@@ -114,6 +114,8 @@ protected:
                     uiImImage(logo.getTextureId(), vec2(avail.y*2, avail.y*2));
                 }
 
+                /*
+
                 if (uiImBeginMenu(__("File"))) {
 
                     if (uiImMenuItem(__("Open"))) {
@@ -140,16 +142,24 @@ protected:
                     uiImEndMenu();
                 }
 
+                */
+
                 if (uiImBeginMenu(__("View"))) {
+
+                    /*
 
                     uiImLabelColored(_("Panels"), vec4(0.8, 0.3, 0.3, 1));
                     uiImSeperator();
+
+                    */
 
                     foreach(panel; inPanels) {
                         if (uiImMenuItem(panel.displayNameC, "", panel.visible)) {
                             panel.visible = !panel.visible;
                         }
                     }
+
+                    /*
                     
                     uiImNewLine();
 
@@ -162,8 +172,12 @@ protected:
                     if (uiImMenuItem(__("Settings"))) {
                         inPushToolWindow(new SettingWindow());
                     }
+
+                    */
                     uiImEndMenu();
                 }
+
+                /*
 
                 if (uiImBeginMenu(__("Tools"))) {
 
@@ -201,7 +215,6 @@ protected:
                     uiImEndMenu();
                 }
 
-
                 if (uiImBeginMenu(__("Help"))) {
                     if (uiImMenuItem(__("Documentation"))) {
                         uiOpenLink("https://github.com/nijigenerate/nijiexpose/wiki");
@@ -214,10 +227,12 @@ protected:
                     uiImEndMenu();
                 }
 
+                */
+
                 uiImDummy(vec2(4, 0));
                 uiImSeperator();
                 uiImDummy(vec2(4, 0));
-                uiImLabel(_("Double-click to show/hide UI"));
+                uiImLabel(_("Double-click to Toggle Developer/Rigger Tools"));
                 uiImDummy(vec2(-30, 0));
                 uiImSameLine();
                 if (neTracker.running) {
@@ -257,7 +272,7 @@ public:
         
         // Initialize nijilive
         inInit(&inGetTime);
-        neSetStyle();
+        //neSetStyle();
         inSetViewport(windowSettings.width, windowSettings.height);
 
         // Preload any specified models
