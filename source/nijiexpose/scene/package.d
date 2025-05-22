@@ -102,21 +102,6 @@ class Scene {
         float[3] ambientLight = inSettingsGet!(float[3])("ambientLight", [1, 1, 1]);
         float[4] bgColor = inSettingsGet!(float[4])("bgColor", [0.5, 0.5, 0.5, 0]);
 
-        if (insScene.space.currentZone.getBlendshapeFor("psEnableAmbientLight") == 1) {
-
-            insScene.shouldPostProcess = true;
-
-            ambientLight[0] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightRed");
-            ambientLight[1] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
-            ambientLight[2] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
-
-        }
-
-        bgColor[0] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightRed");
-        bgColor[1] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
-        bgColor[2] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
-        bgColor[3] = insScene.space.currentZone.getBlendshapeFor("psBackgroundAlpha");
-
         inSceneAmbientLight.vector = ambientLight;
         inSetClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
     }
@@ -216,6 +201,28 @@ class Scene {
             }
 
             */
+
+            if (insScene.space.currentZone.getBlendshapeFor("psEnableAmbientLight") == 1) {
+
+                insScene.shouldPostProcess = true;
+
+                ambientLight[0] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightRed");
+                ambientLight[1] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
+                ambientLight[2] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
+
+            } else {
+
+                insScene.shouldPostProcess = false;
+
+            }
+
+            bgColor[0] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightRed");
+            bgColor[1] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
+            bgColor[2] = insScene.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
+            bgColor[3] = insScene.space.currentZone.getBlendshapeFor("psBackgroundAlpha");
+
+            inSceneAmbientLight.vector = ambientLight;
+            inSetClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
             
             // Update plugins
             foreach(ref plugin; insPlugins) {
@@ -285,9 +292,13 @@ class Scene {
 
         int width, height;
         inGetViewport(width, height);
+
+        /*
         
         deleteArea = rect(0, height-(TRASHCAN_DISPLACEMENT+trashcanSize), trashcanSize+TRASHCAN_DISPLACEMENT, trashcanSize+TRASHCAN_DISPLACEMENT);
         isMouseOverDelete = deleteArea.intersects(inInputMousePosition());
+
+        */
 
         import std.stdio : writeln;
         inCamera = inGetCamera();
@@ -403,6 +414,8 @@ class Scene {
                 (inCamera.position.y+camPosClampY)*inCamera.scale.y
             );
             // Apply Movement + Scaling
+
+            /*
             if (isMouseOverDelete) {
 
                 // If the mouse was let go
@@ -417,7 +430,11 @@ class Scene {
                         return;
                     }
                 }
-            } else if (igIsKeyDown(ImGuiKey.LeftCtrl) || igIsKeyDown(ImGuiKey.RightCtrl)) {
+            } else 
+
+            */
+
+            if (igIsKeyDown(ImGuiKey.LeftCtrl) || igIsKeyDown(ImGuiKey.RightCtrl)) {
                 int insertAfter(ref SceneItem[] items, SceneItem previous, SceneItem target) {
                     int insertAfterAux(ref SceneItem[] items, SceneItem previous, SceneItem target, ref int baseIndex, bool rootOnly = false) {
                         int result = -1;
@@ -538,12 +555,12 @@ private {
     bool isDragDown = false;
     Camera inCamera;
 
-    enum TRASHCAN_DISPLACEMENT = 16;
-    float trashcanVisibility = 0;
-    float trashcanSize = 64;
+    //enum TRASHCAN_DISPLACEMENT = 16;
+    //float trashcanVisibility = 0;
+    //float trashcanSize = 64;
     //Texture trashcanTexture;
-    rect deleteArea;
-    bool isMouseOverDelete;
+    //rect deleteArea;
+    //bool isMouseOverDelete;
 
 }
 
