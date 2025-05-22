@@ -67,11 +67,13 @@ jobs:
         directory: 'out/'
         path: '*'
 
-    - name: 'Release ZIP'
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+    - name: Make Artifact of ZIP
+      uses: actions/upload-artifact@v3
       with:
-          files: 'out/nijiexpose-linux-x86_64.zip'
+        name: linux
+        path: |
+          out/nijiexpose-linux-x86_64.zip
+        retention-days: 1
 
   windows-build:
     runs-on: windows-latest
@@ -132,11 +134,13 @@ jobs:
         directory: 'out/'
         path: '*'
 
-    - name: 'Release'
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+    - name: Make Artifact of ZIP
+      uses: actions/upload-artifact@v3
       with:
-          files: out/nijiexpose-win32-x86_64.zip
+        name: windows
+        path: |
+          out/nijiexpose-win32-x86_64.zip
+        retention-days: 1
 
   macOS-build:
     runs-on: macos-14
@@ -231,12 +235,10 @@ jobs:
         directory: 'out/'
         path: '*'
 
-    - name: 'Build DMG'
-      run: |
-        ./build-aux/osx/gendmg.sh
-
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+    - name: Make Artifact of ZIP
+      uses: actions/upload-artifact@v3
       with:
-          files: out/Install_nijiexpose.dmg
+        name: macos
+        path: |
+          out/nijiexpose-macOS.zip
+        retention-days: 1
