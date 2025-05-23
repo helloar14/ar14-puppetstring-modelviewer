@@ -219,9 +219,9 @@ class Scene {
 
             }
 
-            bgColor[0] = this.space.currentZone.getBlendshapeFor("psAmbientLightRed");
-            bgColor[1] = this.space.currentZone.getBlendshapeFor("psAmbientLightGreen");
-            bgColor[2] = this.space.currentZone.getBlendshapeFor("psAmbientLightBlue");
+            bgColor[0] = this.space.currentZone.getBlendshapeFor("psBackgroundRed");
+            bgColor[1] = this.space.currentZone.getBlendshapeFor("psBackgroundGreen");
+            bgColor[2] = this.space.currentZone.getBlendshapeFor("psBackgroundBlue");
             bgColor[3] = this.space.currentZone.getBlendshapeFor("psBackgroundAlpha");
 
             inSceneAmbientLight.vector = ambientLight;

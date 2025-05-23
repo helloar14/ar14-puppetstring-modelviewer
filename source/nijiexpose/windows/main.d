@@ -181,31 +181,31 @@ protected:
                     uiImLabelColored(_("Target FPS"), vec4(0.8, 0.3, 0.3, 1));
                     uiImSeperator();
 
-                    if (uiImMenuItem(__("No Limit"))) {
+                    if (uiImMenuItem(__("No Limit"), "", inSettingsGet!(int)("throttlingRate") == 0)) {
 
                         inSettingsSet("throttlingRate", 0);
                         neWindowSetThrottlingRate(0);
 
                     }
 
-                    if (uiImMenuItem(__("Same as Display Refresh"))) {
+                    if (uiImMenuItem(__("Same as Display Refresh"), "", inSettingsGet!(int)("throttlingRate") == 1)) {
 
                         inSettingsSet("throttlingRate", 1);
                         neWindowSetThrottlingRate(1);
 
                     }
 
-                    if (uiImMenuItem(__("50% of Display Refresh"))) {
-
-                        inSettingsSet("throttlingRate", 1);
-                        neWindowSetThrottlingRate(1);
-
-                    }
-
-                    if (uiImMenuItem(__("25% of Display Refresh"))) {
+                    if (uiImMenuItem(__("50% of Display Refresh"), "", inSettingsGet!(int)("throttlingRate") == 2)) {
 
                         inSettingsSet("throttlingRate", 2);
                         neWindowSetThrottlingRate(2);
+
+                    }
+
+                    if (uiImMenuItem(__("25% of Display Refresh"), "", inSettingsGet!(int)("throttlingRate") == 4)) {
+
+                        inSettingsSet("throttlingRate", 4);
+                        neWindowSetThrottlingRate(4);
 
                     }
 
@@ -303,7 +303,7 @@ public:
 
         int throttlingRate = inSettingsGet!(int)("throttlingRate", 1);
 
-        super("nijiexpose %s".format(INS_VERSION), windowSettings.width, windowSettings.height, throttlingRate);
+        super("Puppetstring Model Viewer %s".format(INS_VERSION), windowSettings.width, windowSettings.height, throttlingRate);
         
         // Initialize nijilive
         inInit(&inGetTime);
