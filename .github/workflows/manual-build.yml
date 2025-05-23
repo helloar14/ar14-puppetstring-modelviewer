@@ -67,6 +67,12 @@ jobs:
         directory: 'out/'
         path: '*'
 
+    - name: 'Release'
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+          files: out/nijiexpose-linux-x86_64.zip
+
     - name: Make Artifact of ZIP
       uses: actions/upload-artifact@v3
       with:
@@ -133,6 +139,12 @@ jobs:
         filename: 'nijiexpose-win32-x86_64.zip'
         directory: 'out/'
         path: '*'
+
+    - name: 'Release'
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+          files: out/nijiexpose-win32-x86_64.zip
 
     - name: Make Artifact of ZIP
       uses: actions/upload-artifact@v3
@@ -234,6 +246,12 @@ jobs:
         filename: 'nijiexpose-macOS.zip'
         directory: 'out/'
         path: '*'
+
+    - name: 'Release'
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+          files: out/nijiexpose-macOS.zip
 
     - name: Make Artifact of ZIP
       uses: actions/upload-artifact@v3
