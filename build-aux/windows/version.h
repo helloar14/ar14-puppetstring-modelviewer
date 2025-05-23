@@ -7,13 +7,13 @@
 #define VER_PRODUCTVERSION          0,8,1,0
 #define VER_PRODUCTVERSION_STR      "0.8.1\0"
 
-#define VER_COMPANYNAME_STR         "nijigenerate Project"
-#define VER_FILEDESCRIPTION_STR     "nijiexpose"
-#define VER_INTERNALNAME_STR        "nijiexpose"
-#define VER_LEGALCOPYRIGHT_STR      "Copyright © 2022-2023 nijigenerate Project"
-#define VER_ORIGINALFILENAME_STR    "nijiexpose.exe"
-#define VER_PRODUCTNAME_STR         "nijiexpose"
+#define VER_COMPANYNAME_STR         "AR14.works"
+#define VER_FILEDESCRIPTION_STR     "Puppetstring Model Viewer"
+#define VER_INTERNALNAME_STR        "puppetstring-modelviewer"
+#define VER_LEGALCOPYRIGHT_STR      "Copyright ©2024-2025 AR14.works"
+#define VER_ORIGINALFILENAME_STR    "puppetstring-modelviewer.exe"
+#define VER_PRODUCTNAME_STR         "puppetstring-modelviewer"
 
-#define VER_COMPANYDOMAIN_STR       "github.com/nijigenerate"
+#define VER_COMPANYDOMAIN_STR       "www.ar14.works"
 
 #endif // VERSION_H

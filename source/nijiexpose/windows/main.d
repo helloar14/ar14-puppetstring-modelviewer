@@ -109,12 +109,13 @@ protected:
 
         if (showUI) {
             uiImBeginMainMenuBar();
+
+                /*
+
                 vec2 avail = uiImAvailableSpace();
                 version (InBranding) {
                     uiImImage(logo.getTextureId(), vec2(avail.y*2, avail.y*2));
                 }
-
-                /*
 
                 if (uiImBeginMenu(__("File"))) {
 

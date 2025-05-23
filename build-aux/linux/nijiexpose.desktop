@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=nijiexpose
-Exec=nijiexpose
-Icon=nijiexpose
+Name=Puppetstring Model Viewer
+Exec=puppetstring-modelviewer
+Icon=puppetstring-modelviewer
 Type=Application
 Categories=Utility
