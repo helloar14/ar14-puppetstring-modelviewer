@@ -74,7 +74,7 @@ jobs:
           files: out/nijiexpose-linux-x86_64.zip
 
     - name: Make Artifact of ZIP
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linux
         path: |
@@ -147,7 +147,7 @@ jobs:
           files: out/nijiexpose-win32-x86_64.zip
 
     - name: Make Artifact of ZIP
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows
         path: |
@@ -254,7 +254,7 @@ jobs:
           files: out/nijiexpose-macOS.zip
 
     - name: Make Artifact of ZIP
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: macos
         path: |
