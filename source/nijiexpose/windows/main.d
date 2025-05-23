@@ -202,6 +202,13 @@ protected:
 
                     }
 
+                    if (uiImMenuItem(__("33.3% of Display Refresh"), "", inSettingsGet!(int)("throttlingRate") == 3)) {
+
+                        inSettingsSet("throttlingRate", 3);
+                        neWindowSetThrottlingRate(3);
+
+                    }
+
                     if (uiImMenuItem(__("25% of Display Refresh"), "", inSettingsGet!(int)("throttlingRate") == 4)) {
 
                         inSettingsSet("throttlingRate", 4);
@@ -303,7 +310,7 @@ public:
 
         int throttlingRate = inSettingsGet!(int)("throttlingRate", 1);
 
-        super("Puppetstring Model Viewer %s".format(INS_VERSION), windowSettings.width, windowSettings.height, throttlingRate);
+        super("Puppetstring Model Viewer", windowSettings.width, windowSettings.height, throttlingRate);
         
         // Initialize nijilive
         inInit(&inGetTime);
