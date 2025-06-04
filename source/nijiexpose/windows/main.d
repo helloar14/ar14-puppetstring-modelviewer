@@ -63,6 +63,12 @@ void neWindowToggleFullscreen() {
     }
 }
 
+void neWindowToggleBorders() {
+    if (window_) {
+        window_.toggleBorders();
+    }
+}
+
 class nijiexposeWindow : InApplicationWindow {
 private:
     Adaptor adaptor;
@@ -182,6 +188,9 @@ protected:
 
                     */
 
+                    uiImNewLine();
+
+                    uiImLabelColored(_("Display Mode"), vec4(0.8, 0.3, 0.3, 1));
                     uiImSeperator();
 
                     if (uiImMenuItem(__("Toggle Fullscreen"))) {
@@ -190,7 +199,11 @@ protected:
 
                     }
 
-                    uiImSeperator();
+                    if (uiImMenuItem(__("Toggle Window Borders"))) {
+
+                        neWindowToggleBorders();
+
+                    }
 
                     uiImNewLine();
 
