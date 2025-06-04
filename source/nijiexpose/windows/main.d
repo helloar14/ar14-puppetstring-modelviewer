@@ -69,6 +69,12 @@ void neWindowToggleBorders() {
     }
 }
 
+void neWindowToggleMaximized() {
+    if (window_) {
+        window_.toggleMaximized();
+    }
+}
+
 class nijiexposeWindow : InApplicationWindow {
 private:
     Adaptor adaptor;
@@ -202,6 +208,12 @@ protected:
                     if (uiImMenuItem(__("Toggle Window Borders"))) {
 
                         neWindowToggleBorders();
+
+                    }
+
+                    if (uiImMenuItem(__("Maximize/Restore"))) {
+
+                        neWindowToggleMaximized();
 
                     }
 
