@@ -59,7 +59,7 @@ void neWindowSetThrottlingRate(int rate) {
 
 void neWindowToggleFullscreen() {
     if (window_) {
-        window_.toggleBorderlessMaximized();
+        window_.toggleFullscreen();
     }
 }
 
