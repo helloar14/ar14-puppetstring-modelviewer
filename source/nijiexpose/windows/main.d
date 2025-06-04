@@ -205,18 +205,6 @@ protected:
 
                     }
 
-                    if (uiImMenuItem(__("Toggle Window Borders"))) {
-
-                        neWindowToggleBorders();
-
-                    }
-
-                    if (uiImMenuItem(__("Maximize/Restore"))) {
-
-                        neWindowToggleMaximized();
-
-                    }
-
                     uiImNewLine();
 
                     uiImLabelColored(_("Target FPS"), vec4(0.8, 0.3, 0.3, 1));
