@@ -338,8 +338,9 @@ public:
         import nijiexpose.ver;
 
         int throttlingRate = inSettingsGet!(int)("throttlingRate", 1);
+        bool fullScreen = inSettingsGet!(bool)("fullScreen", false);
 
-        super("Puppetstring Model Viewer", windowSettings.width, windowSettings.height, throttlingRate);
+        super("Puppetstring Model Viewer", windowSettings.width, windowSettings.height, throttlingRate, fullScreen);
         
         // Initialize nijilive
         inInit(&inGetTime);
