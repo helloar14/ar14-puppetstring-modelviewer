@@ -57,6 +57,12 @@ void neWindowSetThrottlingRate(int rate) {
     }
 }
 
+void neWindowToggleFullscreen() {
+    if (window_) {
+        window_.toggleFullscreen();
+    }
+}
+
 class nijiexposeWindow : InApplicationWindow {
 private:
     Adaptor adaptor;
@@ -175,6 +181,16 @@ protected:
                     }
 
                     */
+
+                    uiImSeperator();
+
+                    if (uiImMenuItem(__("Toggle Fullscreen"))) {
+
+                        neWindowToggleFullscreen();
+
+                    }
+
+                    uiImSeperator();
 
                     uiImNewLine();
 
