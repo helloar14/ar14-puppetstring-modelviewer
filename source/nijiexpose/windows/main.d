@@ -157,16 +157,12 @@ protected:
 
                     uiImLabelColored(_("Panels"), vec4(0.8, 0.3, 0.3, 1));
                     uiImSeperator();
-
-                    */
-
+                    
                     foreach(panel; inPanels) {
                         if (uiImMenuItem(panel.displayNameC, "", panel.visible)) {
                             panel.visible = !panel.visible;
                         }
                     }
-
-                    /*
                     
                     uiImNewLine();
 
